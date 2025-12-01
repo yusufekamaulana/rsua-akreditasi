@@ -1,13 +1,14 @@
 import { Link } from "react-router";
+import { ReactNode } from "react";
 
 interface AlertProps {
   variant: "success" | "error" | "warning" | "info";
-  title: string | React.ReactNode;
-  message: string | React.ReactNode;
+  title: string | ReactNode;
+  message: string | ReactNode;
   showLink?: boolean;
   linkHref?: string;
   linkText?: string;
-  className?: string; // <-- tambahan
+  className?: string;
 }
 
 const Alert: React.FC<AlertProps> = ({
@@ -42,44 +43,24 @@ const Alert: React.FC<AlertProps> = ({
     },
   };
 
-  const icons = {
+  const icons: Record<AlertProps["variant"], ReactNode> = {
     success: (
-      <svg
-        className="fill-current"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-      >
+      <svg className="fill-current" width="28" height="28" viewBox="0 0 24 24">
         <path d="M3.7 12A8.3 8.3 0 1 1 12 20.3 8.3 8.3 0 0 1 3.7 12Zm8.3-6.1a6.1 6.1 0 1 0 0 12.2 6.1 6.1 0 0 0 0-12.2Zm3.62 4.84a.9.9 0 0 1 0 1.27l-4 4a.9.9 0 0 1-1.28 0L8.38 13.1a.9.9 0 1 1 1.28-1.27l1.53 1.53 3.36-3.37a.9.9 0 0 1 1.27 0Z" />
       </svg>
     ),
     error: (
-      <svg
-        className="fill-current"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-      >
+      <svg className="fill-current" width="28" height="28" viewBox="0 0 24 24">
         <path d="M12 1.85A10.15 10.15 0 1 0 22.15 12 10.16 10.16 0 0 0 12 1.85Zm1 14.62a1 1 0 0 1-2 0v-.01a1 1 0 0 1 2 0Zm0-4.42a1 1 0 0 1-2 0V7.38a1 1 0 0 1 2 0Z" />
       </svg>
     ),
     warning: (
-      <svg
-        className="fill-current"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-      >
+      <svg className="fill-current" width="28" height="28" viewBox="0 0 24 24">
         <path d="M12 1.85A10.15 10.15 0 1 0 22.15 12 10.16 10.16 0 0 0 12 1.85Zm1 14.77a1 1 0 1 1-2 0v-.01a1 1 0 0 1 2 0ZM11 7.38a1 1 0 1 1 2 0v4.62a1 1 0 0 1-2 0Z" />
       </svg>
     ),
     info: (
-      <svg
-        className="fill-current"
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-      >
+      <svg className="fill-current" width="28" height="28" viewBox="0 0 24 24">
         <path d="M12 1.85A10.15 10.15 0 1 0 22.15 12 10.16 10.16 0 0 0 12 1.85Zm1 14.77a1 1 0 1 1-2 0v-.01a1 1 0 0 1 2 0ZM11 7.5a1 1 0 1 1 2 0v.01a1 1 0 0 1-2 0Z" />
       </svg>
     ),
