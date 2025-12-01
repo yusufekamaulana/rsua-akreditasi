@@ -111,14 +111,20 @@ export default function Klasifikasi() {
 
   const [result, setResult] = useState({
     jenisKejadian: "",
+    mdp: "",
+    skp: ""
   });
+
 
   const handleSubmit = () => {
     setResult({
       jenisKejadian: "Kejadian Tidak Diharapkan",
+      mdp: mdpList[0].label.split(":")[0],
+      skp: skpList[0].label.split(":")[0]
     });
     setSubmitted(true);
   };
+
 
   return (
     <ComponentCard title="Klasifikasi Jenis Kejadian">
@@ -167,11 +173,11 @@ export default function Klasifikasi() {
         <Label>Kronologi Insiden</Label>
         <TextArea rows={6} value={message} onChange={setMessage} placeholder="Ceritakan kronologi kejadian..." />
 
-        <Label>Sasaran Keselamatan Pasien (SKP)</Label>
+        {/* <Label>Sasaran Keselamatan Pasien (SKP)</Label>
         <Select options={skpList} placeholder="Pilih SKP" onChange={(v) => { }} />
 
         <Label>Masalah Disiplin Profesi (MDP)</Label>
-        <Select options={mdpList} placeholder="Pilih MDP" onChange={(v) => { }} />
+        <Select options={mdpList} placeholder="Pilih MDP" onChange={(v) => { }} /> */}
 
         <Label>Tempat Insiden</Label>
         <Select options={tempatInsiden} placeholder="Pilih Tempat" onChange={(v) => { }} />
@@ -207,20 +213,41 @@ export default function Klasifikasi() {
               Hasil Klasifikasi
             </h3>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center space-x-8">
               <div className="text-center">
                 <Label>Jenis Kejadian</Label>
                 <button
                   disabled
-                  className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-2 text-sm font-semibold text-white w-48"
+                  className="inline-flex items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-semibold w-52 h-12"
                 >
                   {result.jenisKejadian}
                 </button>
               </div>
+
+              <div className="text-center">
+                <Label>MDP</Label>
+                <button
+                  disabled
+                  className="inline-flex items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-semibold w-52 h-12"
+                >
+                  {result.mdp}
+                </button>
+              </div>
+
+              <div className="text-center">
+                <Label>SKP</Label>
+                <button
+                  disabled
+                  className="inline-flex items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-semibold w-52 h-12"
+                >
+                  {result.skp}
+                </button>
+              </div>
             </div>
+
+
           </div>
         )}
-
       </div>
     </ComponentCard>
   );
